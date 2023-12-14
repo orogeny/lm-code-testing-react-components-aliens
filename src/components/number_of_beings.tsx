@@ -8,7 +8,7 @@ function NumberOfBeings({ value, handleChange }: NumberOfBeingsProps) {
     <div>
       <label htmlFor="number_of_beings">Number of beings</label>
       <input
-        type="text"
+        type="number"
         id="number_of_beings"
         name="number_of_beings"
         value={value}
