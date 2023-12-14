@@ -5,7 +5,7 @@ type PlanetNameProps = {
 
 function PlanetName({ value, handleChange }: PlanetNameProps) {
   return (
-    <>
+    <div>
       <label htmlFor="planet_name">Planet Name</label>
       <input
         type="text"
@@ -14,7 +14,7 @@ function PlanetName({ value, handleChange }: PlanetNameProps) {
         value={value}
         onChange={(e) => handleChange(e.target.value)}
       />
-    </>
+    </div>
   );
 }
 

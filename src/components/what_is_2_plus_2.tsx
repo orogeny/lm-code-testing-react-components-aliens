@@ -5,7 +5,7 @@ type WhatIs2Plus2Props = {
 
 function WhatIs2Plus2({ value, handleChange }: WhatIs2Plus2Props) {
   return (
-    <>
+    <div>
       <label htmlFor="what_is_2_plus_2">What is 2 + 2</label>
       <select
         id="what_is_2_plus_2"
@@ -15,7 +15,7 @@ function WhatIs2Plus2({ value, handleChange }: WhatIs2Plus2Props) {
         <option value="4">4</option>
         <option value="Not 4">Not 4</option>
       </select>
-    </>
+    </div>
   );
 }
 

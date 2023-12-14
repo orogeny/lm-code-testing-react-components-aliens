@@ -5,7 +5,7 @@ type NumberOfBeingsProps = {
 
 function NumberOfBeings({ value, handleChange }: NumberOfBeingsProps) {
   return (
-    <>
+    <div>
       <label htmlFor="number_of_beings">Number of beings</label>
       <input
         type="text"
@@ -14,7 +14,7 @@ function NumberOfBeings({ value, handleChange }: NumberOfBeingsProps) {
         value={value}
         onChange={(e) => handleChange(e.target.valueAsNumber)}
       />
-    </>
+    </div>
   );
 }
 

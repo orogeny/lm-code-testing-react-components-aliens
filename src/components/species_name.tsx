@@ -5,7 +5,7 @@ type SpeciesNameProps = {
 
 function SpeciesName({ value, handleChange }: SpeciesNameProps) {
   return (
-    <>
+    <div>
       <label htmlFor="species_name">Species Name</label>
       <input
         type="text"
@@ -14,7 +14,7 @@ function SpeciesName({ value, handleChange }: SpeciesNameProps) {
         value={value}
         onChange={(e) => handleChange(e.target.value)}
       />
-    </>
+    </div>
   );
 }
 

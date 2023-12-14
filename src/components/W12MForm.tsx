@@ -15,6 +15,7 @@ const W12MForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Form submitted");
   };
 
   return (

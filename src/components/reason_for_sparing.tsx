@@ -5,7 +5,7 @@ type ReasonForSparingProps = {
 
 function ReasonForSparing({ value, handleChange }: ReasonForSparingProps) {
   return (
-    <>
+    <div>
       <label htmlFor="reason_for_sparing">Reason for sparing</label>
       <textarea
         id="reason_for_sparing"
@@ -14,7 +14,7 @@ function ReasonForSparing({ value, handleChange }: ReasonForSparingProps) {
         cols={40}
         rows={5}
       ></textarea>
-    </>
+    </div>
   );
 }
 
