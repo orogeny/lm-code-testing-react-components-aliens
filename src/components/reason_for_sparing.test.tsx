@@ -3,7 +3,13 @@ import ReasonForSparing from "./reason_for_sparing";
 
 describe("ReasonForSparing", () => {
   test("renders label text", () => {
-    render(<ReasonForSparing value={""} handleChange={() => {}} />);
+    render(
+      <ReasonForSparing
+        value={""}
+        validate={() => []}
+        handleChange={() => {}}
+      />
+    );
     const labelText = screen.getByLabelText(/Reason for sparing/);
     expect(labelText).toBeInTheDocument();
   });
@@ -12,6 +18,7 @@ describe("ReasonForSparing", () => {
     render(
       <ReasonForSparing
         value={"Crab population would explode"}
+        validate={() => []}
         handleChange={() => {}}
       />
     );
@@ -24,7 +31,13 @@ describe("ReasonForSparing", () => {
   test("handleChange handles onChange", () => {
     const handleChange = jest.fn();
 
-    render(<ReasonForSparing value={""} handleChange={handleChange} />);
+    render(
+      <ReasonForSparing
+        value={""}
+        validate={() => []}
+        handleChange={handleChange}
+      />
+    );
 
     fireEvent.change(screen.getByRole("textbox"), {
       target: { value: "No more fish left" },

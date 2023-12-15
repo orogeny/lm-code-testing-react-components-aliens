@@ -3,13 +3,21 @@ import PlanetName from "./planet_name";
 
 describe("PlanetName", () => {
   test("renders label text", () => {
-    render(<PlanetName value={""} handleChange={() => {}} />);
+    render(
+      <PlanetName value={""} validate={() => []} handleChange={() => {}} />
+    );
     const labelText = screen.getByLabelText(/Planet Name/);
     expect(labelText).toBeInTheDocument();
   });
 
   test("renders input value", () => {
-    render(<PlanetName value={"Vogsphere"} handleChange={() => {}} />);
+    render(
+      <PlanetName
+        value={"Vogsphere"}
+        validate={() => []}
+        handleChange={() => {}}
+      />
+    );
     const inputText = screen.getByDisplayValue(/Vogsphere/);
     expect(inputText).toBeInTheDocument();
   });
@@ -17,7 +25,9 @@ describe("PlanetName", () => {
   test("handleChange handles onChange()", () => {
     const handleChange = jest.fn();
 
-    render(<PlanetName value={""} handleChange={handleChange} />);
+    render(
+      <PlanetName value={""} validate={() => []} handleChange={handleChange} />
+    );
 
     const input = screen.getByRole("textbox");
 

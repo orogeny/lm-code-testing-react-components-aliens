@@ -1,9 +1,18 @@
+import ErrorMessage from "./error_message";
+
 type NumberOfBeingsProps = {
   value: number;
+  validate: (value: number) => string[];
   handleChange: (value: number) => void;
 };
 
-function NumberOfBeings({ value, handleChange }: NumberOfBeingsProps) {
+function NumberOfBeings({
+  value,
+  validate,
+  handleChange,
+}: NumberOfBeingsProps) {
+  const errorMessages = validate(value);
+
   return (
     <div>
       <label htmlFor="number_of_beings">Number of beings</label>
@@ -14,6 +23,7 @@ function NumberOfBeings({ value, handleChange }: NumberOfBeingsProps) {
         value={value}
         onChange={(e) => handleChange(e.target.valueAsNumber)}
       />
+      <ErrorMessage messages={errorMessages} />
     </div>
   );
 }

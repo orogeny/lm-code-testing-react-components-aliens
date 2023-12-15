@@ -1,9 +1,14 @@
+import ErrorMessage from "./error_message";
+
 type PlanetNameProps = {
   value: string;
+  validate: (value: string) => string[];
   handleChange: (value: string) => void;
 };
 
-function PlanetName({ value, handleChange }: PlanetNameProps) {
+function PlanetName({ value, validate, handleChange }: PlanetNameProps) {
+  const errorMessages = validate(value);
+
   return (
     <div>
       <label htmlFor="planet_name">Planet Name</label>
@@ -14,6 +19,7 @@ function PlanetName({ value, handleChange }: PlanetNameProps) {
         value={value}
         onChange={(e) => handleChange(e.target.value)}
       />
+      <ErrorMessage messages={errorMessages} />
     </div>
   );
 }

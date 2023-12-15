@@ -1,9 +1,18 @@
+import ErrorMessage from "./error_message";
+
 type ReasonForSparingProps = {
   value: string;
+  validate: (value: string) => string[];
   handleChange: (value: string) => void;
 };
 
-function ReasonForSparing({ value, handleChange }: ReasonForSparingProps) {
+function ReasonForSparing({
+  value,
+  validate,
+  handleChange,
+}: ReasonForSparingProps) {
+  const errorMessages = validate(value);
+
   return (
     <div>
       <label htmlFor="reason_for_sparing">Reason for sparing</label>
@@ -14,6 +23,7 @@ function ReasonForSparing({ value, handleChange }: ReasonForSparingProps) {
         cols={40}
         rows={5}
       ></textarea>
+      <ErrorMessage messages={errorMessages} />
     </div>
   );
 }

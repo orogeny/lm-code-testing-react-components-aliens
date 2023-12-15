@@ -5,7 +5,13 @@ import PlanetName from "./planet_name";
 import NumberOfBeings from "./number_of_beings";
 import WhatIs2Plus2 from "./what_is_2_plus_2";
 import ReasonForSparing from "./reason_for_sparing";
-import { validateSpeciesName } from "../validate/validate";
+import {
+  validateNumberOfBeings,
+  validatePlanetName,
+  validateReasonForSparing,
+  validateSpeciesName,
+  validateWhatIs2Plus2,
+} from "../validate/validate";
 
 const W12MForm = () => {
   const [species_name, set_species_name] = useState("");
@@ -40,18 +46,22 @@ const W12MForm = () => {
         />
         <PlanetName
           value={planet_name}
+          validate={validatePlanetName}
           handleChange={(value) => set_planet_name((_) => value)}
         />
         <NumberOfBeings
           value={number_of_beings}
+          validate={validateNumberOfBeings}
           handleChange={(value) => set_number_of_beings((_) => value)}
         />
         <WhatIs2Plus2
           value={what_is_2_plus_2}
+          validate={validateWhatIs2Plus2}
           handleChange={(value) => set_what_is_2_plus_2((_) => value)}
         />
         <ReasonForSparing
           value={reason_for_sparing}
+          validate={validateReasonForSparing}
           handleChange={(value) => set_reason_for_sparing((_) => value)}
         />
 
