@@ -5,6 +5,7 @@ import PlanetName from "./planet_name";
 import NumberOfBeings from "./number_of_beings";
 import WhatIs2Plus2 from "./what_is_2_plus_2";
 import ReasonForSparing from "./reason_for_sparing";
+import { validateSpeciesName } from "../validate/validate";
 
 const W12MForm = () => {
   const [species_name, set_species_name] = useState("");
@@ -15,7 +16,16 @@ const W12MForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+
+    const state = {
+      speciesName: species_name,
+      planetName: planet_name,
+      numberOfBeings: number_of_beings,
+      whatIs2Plus2: what_is_2_plus_2,
+      ReasonForSparing: reason_for_sparing,
+    };
+
+    console.log("Form state: ", state);
   };
 
   return (
@@ -25,6 +35,7 @@ const W12MForm = () => {
       <form onSubmit={handleSubmit}>
         <SpeciesName
           value={species_name}
+          validate={validateSpeciesName}
           handleChange={(value) => set_species_name((_) => value)}
         />
         <PlanetName

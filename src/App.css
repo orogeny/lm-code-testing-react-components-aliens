@@ -39,3 +39,18 @@ form > button[type="submit"] {
   font-size: 1rem;
   padding: 8px 16px;
 }
+
+ul.error-message__list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+ul.error-message__list li {
+  color: red;
+}
+
+ul.error-message__list li:before {
+  content: "*";
+  color: red;
+}
