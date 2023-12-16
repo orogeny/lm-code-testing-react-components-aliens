@@ -4,7 +4,7 @@ import NumberOfBeings from "./number_of_beings";
 describe("NumberOfBeings", () => {
   test("renders label text", () => {
     render(
-      <NumberOfBeings value={0} validate={() => []} handleChange={() => {}} />
+      <NumberOfBeings value={"0"} validate={() => []} handleChange={() => {}} />
     );
     const labelText = screen.getByLabelText(/Number of beings/);
     expect(labelText).toBeInTheDocument();
@@ -12,7 +12,11 @@ describe("NumberOfBeings", () => {
 
   test("renders input value", () => {
     render(
-      <NumberOfBeings value={10} validate={() => []} handleChange={() => {}} />
+      <NumberOfBeings
+        value={"10"}
+        validate={() => []}
+        handleChange={() => {}}
+      />
     );
     const inputText = screen.getByDisplayValue("10");
     expect(inputText).toBeInTheDocument();
@@ -23,7 +27,7 @@ describe("NumberOfBeings", () => {
 
     render(
       <NumberOfBeings
-        value={5}
+        value={"5"}
         validate={() => []}
         handleChange={handleChange}
       />

@@ -16,7 +16,7 @@ import {
 const W12MForm = () => {
   const [species_name, set_species_name] = useState("");
   const [planet_name, set_planet_name] = useState("");
-  const [number_of_beings, set_number_of_beings] = useState(0);
+  const [number_of_beings, set_number_of_beings] = useState("");
   const [what_is_2_plus_2, set_what_is_2_plus_2] = useState("4");
   const [reason_for_sparing, set_reason_for_sparing] = useState("");
 

@@ -1,9 +1,9 @@
 import ErrorMessage from "./error_message";
 
 type NumberOfBeingsProps = {
-  value: number;
+  value: string;
   validate: (value: number) => string[];
-  handleChange: (value: number) => void;
+  handleChange: (value: string) => void;
 };
 
 function NumberOfBeings({
@@ -11,7 +11,7 @@ function NumberOfBeings({
   validate,
   handleChange,
 }: NumberOfBeingsProps) {
-  const errorMessages = validate(value);
+  const errorMessages = validate(Number(value));
 
   return (
     <div>
@@ -21,7 +21,7 @@ function NumberOfBeings({
         id="number_of_beings"
         name="number_of_beings"
         value={value}
-        onChange={(e) => handleChange(e.target.valueAsNumber)}
+        onChange={(e) => handleChange(e.target.value)}
       />
       <ErrorMessage messages={errorMessages} />
     </div>
