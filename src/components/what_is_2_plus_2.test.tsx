@@ -42,4 +42,46 @@ describe("WhatIs2Plus2", () => {
 
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
+
+  test("valid, no errors", () => {
+    const mockValidate = jest.fn();
+
+    mockValidate.mockReturnValue([]);
+
+    const requiredProps = {
+      value: "4",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<WhatIs2Plus2 {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(0);
+  });
+
+  test("invalid errors displayed", () => {
+    const errorList = ["4 is the only viable answer"];
+
+    const mockValidate = jest.fn();
+
+    mockValidate.mockReturnValue(errorList);
+
+    const requiredProps = {
+      value: "Not 4",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<WhatIs2Plus2 {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(errorList.length);
+
+    errorList.forEach((msg) =>
+      expect(screen.getByText(msg)).toBeInTheDocument()
+    );
+  });
 });

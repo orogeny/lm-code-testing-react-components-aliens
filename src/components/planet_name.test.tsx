@@ -37,4 +37,49 @@ describe("PlanetName", () => {
 
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
+
+  test("valid, no errors", () => {
+    const mockValidate = jest.fn();
+
+    mockValidate.mockReturnValue([]);
+
+    const requiredProps = {
+      value: "Elk",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<PlanetName {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(0);
+  });
+
+  test("errors are displayed", () => {
+    const errorList = [
+      "must be between 3 and 32 characters",
+      "no numbers or special characters allowed",
+    ];
+
+    const mockValidate = jest.fn();
+
+    mockValidate.mockReturnValue(errorList);
+
+    const requiredProps = {
+      value: "A!",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<PlanetName {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(2);
+
+    errorList.forEach((msg) =>
+      expect(screen.getByText(msg)).toBeInTheDocument()
+    );
+  });
 });

@@ -39,4 +39,43 @@ describe("NumberOfBeings", () => {
 
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
+
+  test("billion+ valid", () => {
+    const mockValidate = jest.fn();
+
+    mockValidate.mockReturnValue([]);
+
+    const requiredProps = {
+      value: "1000000000",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<NumberOfBeings {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toEqual([]);
+  });
+
+  test("below billion errors", () => {
+    const mockValidate = jest.fn();
+
+    const testErrors = ["below a billion need not apply"];
+
+    mockValidate.mockReturnValue(testErrors);
+
+    const requiredProps = {
+      value: "999999999",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<NumberOfBeings {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(1);
+    expect(screen.getByText(testErrors[0])).toBeInTheDocument();
+  });
 });

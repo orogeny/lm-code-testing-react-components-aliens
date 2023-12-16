@@ -35,4 +35,48 @@ describe("SpeciesName", () => {
 
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
+
+  test("valid, ok", () => {
+    const mockValidate = jest.fn();
+
+    mockValidate.mockReturnValue([]);
+
+    const requiredProps = {
+      value: "Vogon",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<SpeciesName {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(0);
+  });
+
+  test("invalid displays errors", () => {
+    const errorList = [
+      "must be between 3 and 32 characters",
+      "no numbers or special characters allowed",
+    ];
+
+    const mockValidate = jest.fn();
+    mockValidate.mockReturnValue(errorList);
+
+    const requiredProps = {
+      value: "a2",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<SpeciesName {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(errorList.length);
+
+    errorList.forEach((msg) =>
+      expect(screen.getByText(msg)).toBeInTheDocument()
+    );
+  });
 });

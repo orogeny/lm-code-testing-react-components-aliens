@@ -45,4 +45,44 @@ describe("ReasonForSparing", () => {
 
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
+
+  test("valid, no errors", () => {
+    const mockValidate = jest.fn();
+    mockValidate.mockReturnValue([]);
+
+    const requiredProps = {
+      value: "Do we need a reason?",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<ReasonForSparing {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(0);
+  });
+
+  test("invalid error displayed", () => {
+    const errorList = ["must be 17 to 153 characters"];
+
+    const mockValidate = jest.fn();
+    mockValidate.mockReturnValue(errorList);
+
+    const requiredProps = {
+      value: "Um?",
+      validate: mockValidate,
+      handleChange: () => {},
+    };
+
+    render(<ReasonForSparing {...requiredProps} />);
+
+    const errors = screen.queryAllByRole("listitem");
+
+    expect(errors).toHaveLength(1);
+
+    errorList.forEach((msg) =>
+      expect(screen.getByText(msg)).toBeInTheDocument()
+    );
+  });
 });
