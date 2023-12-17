@@ -13,25 +13,48 @@ import {
   validateWhatIs2Plus2,
 } from "../validate/validate";
 
-const W12MForm = () => {
-  const [species_name, set_species_name] = useState("");
-  const [planet_name, set_planet_name] = useState("");
-  const [number_of_beings, set_number_of_beings] = useState("");
-  const [what_is_2_plus_2, set_what_is_2_plus_2] = useState("4");
-  const [reason_for_sparing, set_reason_for_sparing] = useState("");
+type W12MFormData = {
+  speciesName: string;
+  planetName: string;
+  numberOfBeings: number;
+  whatIs2Plus2: string;
+  reasonForSparing: string;
+};
+
+type W12MFormProps = {
+  initialState?: W12MFormData;
+  onSubmit?: (formData: W12MFormData) => void;
+};
+
+const W12MForm = ({ initialState, onSubmit }: W12MFormProps) => {
+  const [species_name, set_species_name] = useState(
+    initialState?.speciesName ?? ""
+  );
+  const [planet_name, set_planet_name] = useState(
+    initialState?.planetName ?? ""
+  );
+  const [number_of_beings, set_number_of_beings] = useState(
+    initialState?.numberOfBeings.toString() ?? ""
+  );
+  const [what_is_2_plus_2, set_what_is_2_plus_2] = useState(
+    initialState?.whatIs2Plus2 ?? "4"
+  );
+  const [reason_for_sparing, set_reason_for_sparing] = useState(
+    initialState?.reasonForSparing ?? ""
+  );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const state = {
-      speciesName: species_name,
-      planetName: planet_name,
-      numberOfBeings: number_of_beings,
-      whatIs2Plus2: what_is_2_plus_2,
-      ReasonForSparing: reason_for_sparing,
-    };
-
-    console.log("Form state: ", state);
+    if (onSubmit !== undefined) {
+      onSubmit({
+        speciesName: species_name,
+        planetName: planet_name,
+        numberOfBeings: Number(number_of_beings),
+        whatIs2Plus2: what_is_2_plus_2,
+        reasonForSparing: reason_for_sparing,
+      });
+    }
   };
 
   return (
@@ -71,4 +94,4 @@ const W12MForm = () => {
   );
 };
 
-export default W12MForm;
+export { W12MForm, type W12MFormData };
