@@ -12,6 +12,7 @@ import {
   validateSpeciesName,
   validateWhatIs2Plus2,
 } from "../validate/validate";
+import InputText from "./input_text";
 
 type W12MFormData = {
   speciesName: string;
@@ -42,6 +43,8 @@ const W12MForm = ({ initialState, onSubmit }: W12MFormProps) => {
   const [reason_for_sparing, set_reason_for_sparing] = useState(
     initialState?.reasonForSparing ?? ""
   );
+  const [fruit, setFruit] = useState("");
+  const [bunch, setBunch] = useState("0");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,17 +65,26 @@ const W12MForm = ({ initialState, onSubmit }: W12MFormProps) => {
       <W12MHeader />
 
       <form onSubmit={handleSubmit}>
-        <SpeciesName
+        <InputText
+          type="text"
+          id="species_name"
+          label="Species Name"
           value={species_name}
           validate={validateSpeciesName}
           handleChange={(value) => set_species_name((_) => value)}
         />
-        <PlanetName
+        <InputText
+          type="text"
+          id="planet_name"
+          label="Planet Name"
           value={planet_name}
           validate={validatePlanetName}
           handleChange={(value) => set_planet_name((_) => value)}
         />
-        <NumberOfBeings
+        <InputText
+          type="number"
+          id="number_of_beings"
+          label="Number of beings"
           value={number_of_beings}
           validate={validateNumberOfBeings}
           handleChange={(value) => set_number_of_beings((_) => value)}
